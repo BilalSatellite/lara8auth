@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\Admin\RoleController;
+use Spatie\Permission\Middlewares\RoleMiddleware;
 
 
 
@@ -29,7 +31,13 @@ Route::middleware(['auth', 'verified'])->group(function () {
 Route::group(['middleware' => ['auth']], function() {
 
     Route::resource('alluser', UsersController::class);
-
-    
+    Route::resource('role', RoleController::class);
 
 });
+// Route::prefix('admin')->group(['middleware' => ['auth','role']],function () {
+        
+//     Route::resource('alluser', UsersController::class);
+// });
+// Route::group(['middleware' => ['role:admin']], function () {
+//     //
+// });

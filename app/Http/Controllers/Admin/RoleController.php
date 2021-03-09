@@ -16,7 +16,7 @@ class RoleController extends Controller
      */
     public function index()
     {
-        return view('panel.admin.role.allroles',['roles' => Role::all()]);
+        return view('panel.admin.role.index',['roles' => Role::all()]);
         
     }
 
@@ -51,7 +51,7 @@ class RoleController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('panel.admin.role.show',['role' => Role::findOrFail($id)]);
     }
 
     /**

@@ -23,24 +23,16 @@ use Spatie\Permission\Middlewares\RoleMiddleware;
 */
 
 Route::get('/', function () {
-   
+
     return view('welcome');
 });
-Route::middleware(['auth', 'verified'])->group(function () {
-    Route::view('home', 'home')->name('home');
+// Route::middleware(['auth', 'verified'])->group(function () {
     
-});
+// });
 //admin
-Route::group(['middleware' => ['auth']], function() {
 
+Route::group(['middleware' => ['auth','verified', 'role:admin']], function () {
+    Route::view('home', 'home')->name('home');
     Route::resource('alluser', UsersController::class);
     Route::resource('role', RoleController::class);
-
 });
-// Route::prefix('admin')->group(['middleware' => ['auth','role']],function () {
-        
-//     Route::resource('alluser', UsersController::class);
-// });
-// Route::group(['middleware' => ['role:admin']], function () {
-//     //
-// });

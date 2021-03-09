@@ -32,9 +32,11 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
+    
                     <ul class="navbar-nav mr-auto">
                         <ul class="navbar-nav mr-auto">
                             @auth
+                            @hasrole('admin')
                             <li class="nav-item">
                                 <a href="{{ url('/home') }}" class="text-white">Home</a>
                             </li>
@@ -45,6 +47,11 @@
                             <li class="nav-item">
                                 <a href="{{ url('/role') }}" class="text-white ml-1">Role</a>
                             </li>
+                            @else
+                            <li class="nav-item">
+                                <a href="{{ url('/') }}" class="text-white">Home</a>
+                            </li>
+                            @endhasrole
                             @endauth
                         </ul>
 

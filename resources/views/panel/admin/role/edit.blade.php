@@ -11,7 +11,7 @@
 </div>
 
 <div class="">
-    <a class="btn btn-success" href="{{ route('role.index') }}"> Role list</a>
+    <a class="btn btn-success" href="{{ route('role.index') }}"> View Role</a>
 </div>
 </div>
 

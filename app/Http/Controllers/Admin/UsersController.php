@@ -31,7 +31,7 @@ class UsersController extends Controller
        // $data = User::orderBy('id','ASC')->paginate(5);
        // return view('panel.admin.all_user',compact('data'));
        //desc and asc
-       return view('panel.admin.users.all_user',['users' => User::orderBy('id','asc')->paginate(10)]);
+       return view('panel.admin.users.index',['users' => User::orderBy('id','asc')->paginate(10)]);
     }
 
     /**
@@ -43,7 +43,7 @@ class UsersController extends Controller
     {
         // $roles = Role::pluck('name','name')->all();
         // return view('panel.admin.user_create',compact('roles'));
-        return view('panel.admin.users.user_create',['roles' => Role::all()]);
+        return view('panel.admin.users.create',['roles' => Role::all()]);
     }
 
     /**
@@ -74,9 +74,8 @@ class UsersController extends Controller
      */
     public function show($id)
     {   
-        //$user = $user = User::findOrFail($id);
-        //$user = User::findOrFail($id);
-        return view('panel.admin.users.user_show',['user' => User::findOrFail($id)]);
+        
+        return view('panel.admin.users.show',['user' => User::findOrFail($id)]);
         
     }
 
@@ -88,7 +87,7 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-        return view('panel.admin.users.user_edit',[
+        return view('panel.admin.users.edit',[
             'roles' => Role::all(),
             'user'  => User::find($id)
             ]);

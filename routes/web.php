@@ -1,8 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\UsersController;
-use App\Http\Controllers\Admin\RoleController;
+
+use Admin\UsersController;
+//use App\Http\Controllers\UsersController;
+use Admin\RoleController;
+use App\Http\Controllers\UsersController as ControllersUsersController;
 use Spatie\Permission\Middlewares\RoleMiddleware;
 
 

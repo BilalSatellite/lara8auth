@@ -1,20 +1,21 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use DB;
-//use Hash;
+
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use Illuminate\Support\Arr;
-use Illuminate\Http\Request;
+
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 
-
 class UsersController extends Controller
 {
-    /**
+     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -30,7 +31,7 @@ class UsersController extends Controller
        // $data = User::orderBy('id','ASC')->paginate(5);
        // return view('panel.admin.all_user',compact('data'));
        //desc and asc
-       return view('panel.admin.all_user',['users' => User::orderBy('id','asc')->paginate(10)]);
+       return view('panel.admin.users.all_user',['users' => User::orderBy('id','asc')->paginate(10)]);
     }
 
     /**
@@ -42,7 +43,7 @@ class UsersController extends Controller
     {
         // $roles = Role::pluck('name','name')->all();
         // return view('panel.admin.user_create',compact('roles'));
-        return view('panel.admin.user_create',['roles' => Role::all()]);
+        return view('panel.admin.users.user_create',['roles' => Role::all()]);
     }
 
     /**
@@ -75,7 +76,7 @@ class UsersController extends Controller
     {   
         //$user = $user = User::findOrFail($id);
         //$user = User::findOrFail($id);
-        return view('panel.admin.user_show',['user' => User::findOrFail($id)]);
+        return view('panel.admin.users.user_show',['user' => User::findOrFail($id)]);
         
     }
 
@@ -87,7 +88,7 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-        return view('panel.admin.user_edit',[
+        return view('panel.admin.users.user_edit',[
             'roles' => Role::all(),
             'user'  => User::find($id)
             ]);
@@ -120,6 +121,5 @@ class UsersController extends Controller
         //dd($id);
         User::destroy($id);
         return redirect(route('alluser.index'));
-
-    }
+}
 }

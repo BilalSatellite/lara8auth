@@ -41,6 +41,9 @@
                         <li class="nav-item">
                             <a href="{{ url('/alluser') }}" class="text-white ml-1">Users</a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{ url('/role') }}" class="text-white ml-1">Role</a>
+                        </li>
                         @endauth
                     </ul>
 

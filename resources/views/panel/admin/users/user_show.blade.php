@@ -1,7 +1,7 @@
 @extends('panel.master')
-
+@section('tital', 'Profile User')
 @section('content')
-<h5>Welcome, {{ auth()->user()->name }}</h5>
+
 <div class="">
   @if (session('status'))
   <div class="alert alert-success" role="alert">
@@ -10,13 +10,7 @@
   @endif
 </div>
 
-<div class="card ">
-  <div class="card-header bg-primary">
-    
-    <div class="d-flex justify-content-between">
-        <div class="">
-            <h4 class="card-title text-white">User Profile</h4>
-        </div>
+
         <div class="">
             <a class="btn btn-success" href="{{ route('alluser.index') }}"> User list</a>
         </div>

@@ -21,7 +21,7 @@
     <div class="card-body">
         <form method="POST" action="{{ route('alluser.update',$user->id) }}">
             @method('PATCH')
-         @include('panel.admin.users.include.form')
+         @include('panel.admin.include.form')
         </form>
 
     </div>

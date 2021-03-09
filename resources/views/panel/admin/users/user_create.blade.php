@@ -20,7 +20,7 @@
     </div>
     <div class="card-body">
         <form method="POST" action="{{ route('alluser.store') }}">
-         @include('panel.admin.users.include.form',['create'=>true])
+         @include('panel.admin.include.form',['create'=>true])
         </form>
 
     </div>

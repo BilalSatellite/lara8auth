@@ -2,14 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
-use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
-//use Spatie\Permission\Contracts\Permission;
+use Illuminate\Http\Request;
 use Spatie\Permission\Models\Permission;
 
-
-class RoleController extends Controller
+class PermissionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,9 +15,7 @@ class RoleController extends Controller
      */
     public function index()
     {
-        
-        return view('panel.admin.role.index',['roles' => Role::all()]);
-        
+        return view('panel.admin.role.permission',['permissions' => Permission::all()]);
     }
 
     /**
@@ -30,8 +25,7 @@ class RoleController extends Controller
      */
     public function create()
     {
-        
-        return view('panel.admin.role.create',['roles' => Permission::all()]);
+        return view('panel.admin.role.create',['permissions' => Permission::all()]);
     }
 
     /**
@@ -41,10 +35,10 @@ class RoleController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-
     {
-        $role = Role::create(['name' => $request->input('name')]);
-        return redirect(route('role.create'))->with('success','Role created successfully');
+        //dd($request);
+        $permission = Permission::create(['name' => $request->input('name')]);
+        return redirect(route('permission.create'))->with('success','Permission created successfully');
     }
 
     /**
@@ -55,7 +49,7 @@ class RoleController extends Controller
      */
     public function show($id)
     {
-        return view('panel.admin.role.show',['role' => Role::findOrFail($id)]);
+        //
     }
 
     /**
@@ -66,7 +60,7 @@ class RoleController extends Controller
      */
     public function edit($id)
     {
-        return view('panel.admin.role.edit',['roles' => Role::find($id)]);
+        //
     }
 
     /**
@@ -78,15 +72,7 @@ class RoleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //dd($request);
-        // $roles= Role::findOrFail($id);
-        // $roles->update();
-        // $roles->roles()->sync($request->roles);
-        //dd($id);
-        $role = Role::find($id);
-        $role->name = $request->input('name');
-        $role->save();
-        return redirect(route('role.index'));
+        //
     }
 
     /**
@@ -97,7 +83,6 @@ class RoleController extends Controller
      */
     public function destroy($id)
     {
-        Role::destroy($id);
-        return redirect(route('role.index'))->with('success','Role Deleted successfully');
+        //
     }
 }

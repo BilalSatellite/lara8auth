@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use Admin\UsersController;
 //use App\Http\Controllers\UsersController;
 use Admin\RoleController;
+use Admin\PermissionController;
 use App\Http\Controllers\UsersController as ControllersUsersController;
 use Spatie\Permission\Middlewares\RoleMiddleware;
 
@@ -35,4 +36,5 @@ Route::group(['middleware' => ['auth','verified', 'role:admin']], function () {
     Route::view('home', 'home')->name('home');
     Route::resource('alluser', UsersController::class);
     Route::resource('role', RoleController::class);
+    Route::resource('permission', PermissionController::class);
 });

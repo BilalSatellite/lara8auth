@@ -22,14 +22,6 @@ class UsersController extends Controller
      */
     public function index(Request $request)
     {
-        //auth()->user()->assignRole('admin');
-        //$role = Role::create(['name' => 'writer']);
-        //$permission = Permission::create(['name' => 'edit articles']);
-       // $role->givePermissionTo($permission);
-       //$permission = Permission::get();
-       //dd( $role );
-       // $data = User::orderBy('id','ASC')->paginate(5);
-       // return view('panel.admin.all_user',compact('data'));
        //desc and asc
        return view('panel.admin.users.index',['users' => User::orderBy('id','asc')->paginate(10)]);
     }

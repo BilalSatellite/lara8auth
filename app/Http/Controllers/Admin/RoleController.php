@@ -19,7 +19,7 @@ class RoleController extends Controller
     public function index()
     {
         
-        return view('panel.admin.role.index',['roles' => Role::all()]);
+        return view('panel.admin.role.index',['roles' => Role::all(),'permissions' => Permission::all()]);
         
     }
 
@@ -78,11 +78,7 @@ class RoleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //dd($request);
-        // $roles= Role::findOrFail($id);
-        // $roles->update();
-        // $roles->roles()->sync($request->roles);
-        //dd($id);
+        
         $role = Role::find($id);
         $role->name = $request->input('name');
         $role->save();

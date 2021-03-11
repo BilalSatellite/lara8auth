@@ -1,5 +1,9 @@
 @extends('panel.master')
+@if(Route::is('role.create') )
 @section('tital', 'Create Role')
+@else
+@section('tital', 'Create Permission')
+@endif
 @section('content')
 
 <div class="">
@@ -12,12 +16,13 @@
 
 
 <div class="">
-    <a class="btn btn-success" href="{{ route('role.index') }}"> Roles list</a>
+    <a class="btn btn-success" href="{{ route('role.index') }}">@if(Route::is('role.create') ) Roles list @else Permissions list @endif</a>
 </div>
 </div>
 
 </div>
 <div class="card-body">
+    @if(Route::is('role.create') )
     <form method="POST" action="{{ route('role.store') }}">
         @csrf
         <div class="form-group row">
@@ -42,10 +47,8 @@
             </div>
         </div>
     </form>
-
-</div>
-{{-- Permission Create --}}
-<div class="card-body">
+    @else
+    {{-- Permission Create --}}
     <form method="POST" action="{{ route('permission.store') }}">
         @csrf
         <div class="form-group row">
@@ -70,9 +73,10 @@
             </div>
         </div>
     </form>
+    @endif
 
 </div>
 
-</div>
+
 
 @endsection

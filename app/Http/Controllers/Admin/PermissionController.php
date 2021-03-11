@@ -49,7 +49,7 @@ class PermissionController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('panel.admin.role.show',['permission' => Permission::findOrFail($id)]);
     }
 
     /**
@@ -60,7 +60,7 @@ class PermissionController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('panel.admin.role.edit',['permissions' => Permission::find($id)]);
     }
 
     /**
@@ -72,7 +72,10 @@ class PermissionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $permissions = Permission::find($id);
+        $permissions->name = $request->input('name');
+        $permissions->save();
+        return redirect(route('role.index'));
     }
 
     /**
@@ -83,6 +86,7 @@ class PermissionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Permission::destroy($id);
+        return redirect(route('role.index'))->with('success','Role Deleted successfully');
     }
 }

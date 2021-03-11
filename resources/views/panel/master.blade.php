@@ -101,7 +101,7 @@
                     <div class="">
                       <h4 class="card-title text-white">@yield('tital')</h4>
                     </div>
-            @yield('content')
+                 @yield('content')
          </div>
         </main>
     </div>

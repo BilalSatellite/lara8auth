@@ -32,7 +32,7 @@ Route::get('/', function () {
 // });
 //admin
 
-Route::group(['middleware' => ['auth','verified', 'role:admin']], function () {
+Route::group(['middleware' => ['auth','verified', 'role:Admin']], function () {
     Route::view('home', 'home')->name('home');
     Route::resource('alluser', UsersController::class);
     Route::resource('role', RoleController::class);

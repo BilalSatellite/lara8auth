@@ -66,7 +66,10 @@ class RoleController extends Controller
      */
     public function edit($id)
     {
-        return view('panel.admin.role.edit',['roles' => Role::find($id)]);
+        return view('panel.admin.role.edit',[
+            'roles' => Role::find($id),
+            'permissions' => Permission::all()
+            ]);
     }
 
     /**
@@ -78,11 +81,14 @@ class RoleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+      
         $role = Role::find($id);
         $role->name = $request->input('name');
+        $role->syncPermissions($request->permissions);
         $role->save();
+        
         return redirect(route('role.index'));
+       
     }
 
     /**

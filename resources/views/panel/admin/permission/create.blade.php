@@ -1,7 +1,7 @@
 @extends('panel.master')
 
-@section('tital', 'Create Role')
 
+@section('tital', 'Create Permission')
 
 @section('content')
 
@@ -15,17 +15,18 @@
 
 
 <div class="">
-    <a class="btn btn-success" href="{{ route('role.index') }}"> Roles list</a>
+    <a class="btn btn-success" href="{{ route('permission.index') }}">Permissions list</a>
 </div>
 </div>
 
 </div>
 <div class="card-body">
 
-    <form method="POST" action="{{ route('role.store') }}">
+    {{-- Permission Create --}}
+    <form method="POST" action="{{ route('permission.store') }}">
         @csrf
         <div class="form-group row">
-            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Role Name') }}</label>
+            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Permission Name') }}</label>
 
             <div class="col-md-6">
                 <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name"
@@ -46,7 +47,6 @@
             </div>
         </div>
     </form>
-
 
 
 </div>

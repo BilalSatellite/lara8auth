@@ -15,7 +15,7 @@ class PermissionController extends Controller
      */
     public function index()
     {
-        return view('panel.admin.role.permission',['permissions' => Permission::all()]);
+        return view('panel.admin.permission.index',['permissions' => Permission::all()]);
     }
 
     /**
@@ -25,7 +25,7 @@ class PermissionController extends Controller
      */
     public function create()
     {
-        return view('panel.admin.role.create',['permissions' => Permission::all()]);
+        return view('panel.admin.permission.create',['permissions' => Permission::all()]);
     }
 
     /**
@@ -49,7 +49,7 @@ class PermissionController extends Controller
      */
     public function show($id)
     {
-        return view('panel.admin.role.show',['permission' => Permission::findOrFail($id)]);
+        return view('panel.admin.permission.show',['permission' => Permission::findOrFail($id)]);
     }
 
     /**
@@ -60,7 +60,7 @@ class PermissionController extends Controller
      */
     public function edit($id)
     {
-        return view('panel.admin.role.edit',['permissions' => Permission::find($id)]);
+        return view('panel.admin.permission.edit',['permissions' => Permission::find($id)]);
     }
 
     /**
@@ -75,7 +75,7 @@ class PermissionController extends Controller
         $permissions = Permission::find($id);
         $permissions->name = $request->input('name');
         $permissions->save();
-        return redirect(route('role.index'));
+        return redirect(route('permission.index'));
     }
 
     /**
@@ -87,6 +87,6 @@ class PermissionController extends Controller
     public function destroy($id)
     {
         Permission::destroy($id);
-        return redirect(route('role.index'))->with('success','Role Deleted successfully');
+        return redirect(route('permission.index'))->with('success','Role Deleted successfully');
     }
 }

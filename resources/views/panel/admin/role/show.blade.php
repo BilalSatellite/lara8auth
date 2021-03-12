@@ -1,9 +1,5 @@
 @extends('panel.master')
-@if(Route::is('role.show') )
 @section('tital', 'Role Info')
-@else
-@section('tital', 'Permissions Info')
-@endif
 @section('content')
 
 <div class="">
@@ -14,7 +10,7 @@
   @endif
 </div>
         <div class="">
-            <a class="btn btn-success" href="{{ route('role.index') }}"> @if(Route::is('role.show') ) View Role @else View Permissions @endif</a>
+            <a class="btn btn-success" href="{{ route('role.index') }}"> View Role</a>
         </div>
     </div>
     </div>
@@ -23,11 +19,7 @@
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Name:</strong>
-                    @if(Route::is('role.show') )
                     {{ $role->name }}
-                    @else
-                    {{ $permission->name }}
-                    @endif
                 </div>
                 
             </div>

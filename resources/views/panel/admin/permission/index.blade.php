@@ -1,5 +1,5 @@
 @extends('panel.master')
-@section('tital', 'Roles')
+@section('tital', 'Permissions')
 @section('content')
 
 <div class="">
@@ -10,43 +10,46 @@
   @endif
 </div>
 <div class="">
-  <a class="btn btn-success" href="{{ route('role.create') }}">Create Role</a>
+  
+  <a class="btn btn-success" href="{{ route('permission.create') }}">Create Permission</a>
 </div>
 </div>
 </div>
+      {{-- Permission index --}}
+
       <div class="card-body">
 
         <table class="table table-bordered">
           <thead class="thead-dark">
             <tr>
               <th>#id</th>
-              <th>Role Name</th>
-              <th>Permissions</th>
+              <th>Permission Name</th>
+              <th>Roles</th>
               <th width="">Action</th>
             </tr>
-            @foreach ($roles as $role)
+            @foreach ($permissions as $permission)
           </thead>
           <tbody>
             <tr>
-              <th>{{ $role->id }}</th>
-              <th>{{ $role->name }}</th>
+              <th>{{ $permission->id }}</th>
+              <th>{{ $permission->name }}</th>
               <td>
-                @if(!empty($role->getPermissionNames()))
-                @foreach($role->getPermissionNames() as $v)
+                @if(!empty($permission->getRoleNames()))
+                @foreach($permission->getRoleNames() as $v)
                 <label class="badge badge-success">{{ $v }}</label>
                 @endforeach
                 @endif
               </td>
               <th width="">
-                <a class="btn btn-sm btn-success" href="{{ route('role.show',$role->id) }}">Show</a>
-                <a class="btn btn-sm btn-primary" href="{{ route('role.edit',$role->id) }}">Edit</a>
+                <a class="btn btn-sm btn-success" href="{{ route('permission.show',$permission->id) }}">Show</a>
+                <a class="btn btn-sm btn-primary" href="{{ route('permission.edit',$permission->id) }}">Edit</a>
                 <button type="button" class="btn btn-sm btn-danger"
                   onclick="event.preventDefault();
                      document.getElementById(
-                       'delete_role_form{{ $role->id }}').submit();">
+                       'delete_permission_form{{ $permission->id }}').submit();">
                   {{ __('Delete') }}
                 </button>
-                <form id="delete_role_form{{ $role->id }}" action="{{ route('role.destroy',$role->id) }}" method="POST"
+                <form id="delete_permission_form{{ $permission->id }}" action="{{ route('permission.destroy',$permission->id) }}" method="POST"
                   class="d-none">
                   @csrf
                   @method('DELETE')
@@ -57,5 +60,4 @@
           </tbody>
           @endforeach
         </table>
-     </div> 
 @endsection

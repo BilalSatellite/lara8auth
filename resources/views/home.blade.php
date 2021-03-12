@@ -15,7 +15,7 @@
             <hr class="my-4">
             <h2>Features:</h2>
             @if(Route::is('home') )
-            <h1>hhhhhhhhhhhhhhhh</h1>
+            <h1>this is a auth home</h1>
             @endif
             <ul>
                 <li>User Login</li>

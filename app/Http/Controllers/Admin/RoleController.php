@@ -18,9 +18,9 @@ class RoleController extends Controller
      */
     public function index()
     {
-        
+
         return view('panel.admin.role.index',['roles' => Role::all(),'permissions' => Permission::all()]);
-        
+
     }
 
     /**
@@ -30,8 +30,8 @@ class RoleController extends Controller
      */
     public function create()
     {
-        
-        return view('panel.admin.role.create',['roles' => Permission::all()]);
+
+        return view('panel.admin.role.create',['permissions' => Permission::all()]);
     }
 
     /**
@@ -44,7 +44,9 @@ class RoleController extends Controller
 
     {
         $role = Role::create(['name' => $request->input('name')]);
-        return redirect(route('role.create'))->with('success','Role created successfully');
+        $role->syncPermissions($request->permissions);
+
+        return redirect(route('role.index'))->with('success','Role created successfully');
     }
 
     /**
@@ -55,7 +57,7 @@ class RoleController extends Controller
      */
     public function show($id)
     {
-        return view('panel.admin.role.show',['role' => Role::findOrFail($id)]);
+        return view('panel.admin.role.show',['role' => Role::findOrFail($id),'permissions'=> Permission::all()]);
     }
 
     /**
@@ -81,14 +83,14 @@ class RoleController extends Controller
      */
     public function update(Request $request, $id)
     {
-      
+
         $role = Role::find($id);
         $role->name = $request->input('name');
         $role->syncPermissions($request->permissions);
         $role->save();
-        
+
         return redirect(route('role.index'));
-       
+
     }
 
     /**

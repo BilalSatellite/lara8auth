@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -19,21 +20,23 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
+
 <body>
     <div id="app">
-      @include('layouts.navbar')
+        @include('layouts.navbar')
 
         <main class="py-4">
-         <div class="container">
-            <div class="card ">
-                <div class="card-header bg-primary">
-                  <div class="d-flex justify-content-between">
-                    <div class="">
-                      <h4 class="card-title text-white">@yield('tital')</h4>
-                    </div>
-                 @yield('content')
-         </div>
+            <div class="container">
+                <div class="card ">
+                    <div class="card-header bg-primary">
+                        <div class="d-flex justify-content-between">
+                            <div class="">
+                                <h4 class="card-title text-white">@yield('tital')</h4>
+                            </div>
+                            @yield('content')
+                        </div>
         </main>
     </div>
 </body>
+
 </html>

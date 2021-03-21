@@ -1,0 +1,8 @@
+{
+    "namespaceResolver.highlightOnOpen": true,
+    "namespaceResolver.showMessageOnStatusBar": true,
+    "namespaceResolver.sortAlphabetically": true,
+    "namespaceResolver.sortOnSave": true,
+    "namespaceResolver.sortNatural": true,
+    "namespaceResolver.highlightOnSave": true
+}

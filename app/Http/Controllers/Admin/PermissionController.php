@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 
 class PermissionController extends Controller
 {
@@ -15,7 +16,7 @@ class PermissionController extends Controller
      */
     public function index()
     {
-        return view('panel.admin.permission.index',['permissions' => Permission::all()]);
+        return view('panel.admin.permission.index', ['permissions' => Permission::all()]);
     }
 
     /**
@@ -25,7 +26,7 @@ class PermissionController extends Controller
      */
     public function create()
     {
-        return view('panel.admin.permission.create',['permissions' => Permission::all()]);
+        return view('panel.admin.permission.create', ['roles' => Role::all()]);
     }
 
     /**
@@ -38,7 +39,8 @@ class PermissionController extends Controller
     {
         //dd($request);
         $permission = Permission::create(['name' => $request->input('name')]);
-        return redirect(route('permission.create'))->with('success','Permission created successfully');
+        $permission->syncRoles($request->roles);
+        return redirect(route('permission.index'))->with('success', 'Permission created successfully');
     }
 
     /**
@@ -49,7 +51,7 @@ class PermissionController extends Controller
      */
     public function show($id)
     {
-        return view('panel.admin.permission.show',['permission' => Permission::findOrFail($id)]);
+        return view('panel.admin.permission.show', ['permission' => Permission::findOrFail($id),'roles' => Role::all()]);
     }
 
     /**
@@ -60,7 +62,10 @@ class PermissionController extends Controller
      */
     public function edit($id)
     {
-        return view('panel.admin.permission.edit',['permissions' => Permission::find($id)]);
+        return view('panel.admin.permission.edit', [
+                'permissions' => Permission::find($id),
+                'roles' => Role::all()
+                ]);
     }
 
     /**
@@ -72,9 +77,10 @@ class PermissionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $permissions = Permission::find($id);
-        $permissions->name = $request->input('name');
-        $permissions->save();
+        $permission = Permission::find($id);
+        $permission->name = $request->input('name');
+        $permission->syncRoles($request->roles);
+        $permission->save();
         return redirect(route('permission.index'));
     }
 
@@ -87,6 +93,6 @@ class PermissionController extends Controller
     public function destroy($id)
     {
         Permission::destroy($id);
-        return redirect(route('permission.index'))->with('success','Role Deleted successfully');
+        return redirect(route('permission.index'))->with('success', 'Role Deleted successfully');
     }
 }

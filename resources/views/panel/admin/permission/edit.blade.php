@@ -26,6 +26,20 @@
                     autocomplete="name" autofocus>
             </div>
         </div>
+        <div class="form-group row">
+            <label for="role" class="col-md-4 col-form-label text-md-right">{{ __('Roles :') }}</label>
+            <div class="col-md-6">
+                @foreach ($roles as $role)
+                    <div class="form-check">
+                        <label class="form-check-label" for="{{ $role->name }}">
+                            <input type="checkbox" class="form-check-input" name="roles[]" id="{{ $role->name }}"
+                                value="{{ $role->id }}" @isset($permissions) @if (in_Array($role->id, $permissions->roles->pluck('id')->toArray())) checked @endif @endisset>
+                            {{ $role->name }}
+                        </label>
+                    </div>
+                @endforeach
+            </div>
+        </div>
         <div class="form-group row mb-0">
             <div class="col-md-6 offset-md-4">
                 <button type="submit" class="btn btn-primary">

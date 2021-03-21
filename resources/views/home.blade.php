@@ -14,8 +14,8 @@
             <p class="lead">This is a simple auth starter setup for laravel 8 projects</p>
             <hr class="my-4">
             <h2>Features:</h2>
-            @if(Route::is('home') )
-            <h1>this is a auth home</h1>
+            @if (Route::is('home'))
+                <h1>this is a auth home</h1>
             @endif
             <ul>
                 <li>User Login</li>
@@ -28,6 +28,6 @@
                 <a class="btn btn-primary" href="" target="_blank" role="button">Github Source Code</a>
             </p>
         </div>
-      
+
     </div>
 @endsection

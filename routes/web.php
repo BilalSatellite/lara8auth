@@ -28,7 +28,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 // Route::middleware(['auth', 'verified'])->group(function () {
-    
+
 // });
 //admin
 
